@@ -29,14 +29,15 @@ if numel(xpos) > 1,
     
     % use white background
     txtBg = 'w';
+%     txtBg = 'none';
 else
     txtBg = 'none';
 end
 
-fz = 8; fontweight = 'bold';
-if pval < 1e-3
+fz = 20; fontweight = 'bold';
+if pval < .001
     txt = '***';
-elseif pval < 1e-2
+elseif pval < .01
     txt = '**';
 elseif pval < 0.05
     txt = '*';
@@ -44,7 +45,7 @@ elseif ~isnan(pval),
     % this should be smaller
     txt = 'n.s.';
     %txt = '';
-    fz = 6; fontweight = 'normal';
+    fz = 20; fontweight = 'bold';
 else
     return
 end
@@ -52,5 +53,6 @@ end
 % draw the stars in the bar
 h = text(mean(xpos), mean(ypos), txt, ...
     'horizontalalignment', 'center', 'backgroundcolor', ...
-    txtBg, 'margin', 1, 'fontsize', fz, 'fontweight', fontweight, 'color', color, 'Parent', ax);
+    txtBg, 'margin', 0.001, 'fontsize', fz, 'fontweight', fontweight, 'color', color, 'Parent', ax);
+
 end
